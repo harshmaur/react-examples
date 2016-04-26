@@ -1,7 +1,18 @@
-export function selectBook(book) {
-    // selectBook is actionCreator, needs to return an action which is an object with "type" property
+import axios from 'axios'
+
+const API_KEY = "f2da2fe3164df2995674b85c35198caa"
+const ROOT_URL = `http://api.openweathermap.org/data/2.5/forecast?appid=${API_KEY}`
+
+export const FETCH_WEATHER = 'FETCH_WEATHER'
+
+export function fetchWeather(city) {
+
+    const url = `${ROOT_URL}&q=${city},us`
+    const request = axios.get(url)
+
+
     return {
-        type: 'BOOK_SELECTED',
-        payload: book 
+        type: FETCH_WEATHER,
+        payload: request
     }
 }
